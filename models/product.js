@@ -3,7 +3,8 @@ import mongoose, { Schema } from "mongoose";
 const productSchema = new mongoose.Schema({
     name : String,
     price : Number,
-    description : String
+    description : String,
+    lastPrice : Number
 })
 
 const Product = mongoose.model("Product",productSchema)
