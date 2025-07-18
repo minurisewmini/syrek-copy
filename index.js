@@ -5,6 +5,8 @@ import productRouter from "./routes/productRouter.js";
 import userRouter from "./routes/userRouter.js";
 import { loginUser } from "./controller/userController.js";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config()
 
 
 //entire backend 
@@ -35,7 +37,7 @@ app.use((req,res,next)=>{
 
 
 
-const connectionString = "mongodb+srv://admin:123@cluster0.wj40qep.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+const connectionString = process.env.MONGO_DB_URL
 
 
 mongoose.connect(connectionString).then(
