@@ -1,6 +1,5 @@
 import express from "express";
 import mongoose from "mongoose";
-import studentRouter from "./routes/studentRouter.js";
 import productRouter from "./routes/productRouter.js";
 import userRouter from "./routes/userRouter.js";
 import { loginUser } from "./controller/userController.js";
@@ -57,7 +56,6 @@ mongoose.connect(connectionString).then(
     }
 );
 
-app.use('/api/students',studentRouter)
 app.use("/api/products",productRouter)
 app.use("/api/users",userRouter)
 app.use("/api/login",loginUser)
@@ -79,5 +77,3 @@ app.delete("/",
         console.log("Delete request received")
     }
 )
-
-export default studentRouter;
