@@ -1,6 +1,5 @@
 import express from "express";
 import mongoose from "mongoose";
-import productRouter from "./routes/productRouter.js";
 import userRouter from "./routes/userRouter.js";
 import { loginUser } from "./controller/userController.js";
 import jwt from "jsonwebtoken";
@@ -56,7 +55,6 @@ mongoose.connect(connectionString).then(
     }
 );
 
-app.use("/api/products",productRouter)
 app.use("/api/users",userRouter)
 app.use("/api/login",loginUser)
 
