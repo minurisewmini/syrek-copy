@@ -24,6 +24,7 @@ app.use((req,res,next)=>{
     if(!error){
         //console.log(decoded)
         req.user=decoded
+        console.log(decoded)
     }else {
                 console.log("Token verification failed:", error.message);
             }})

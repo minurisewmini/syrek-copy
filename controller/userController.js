@@ -6,6 +6,26 @@ dotenv.config()
 
 export function createUser(req,res){
     const newUserData = req.body
+
+    if(newUserData.type == "admin"){
+        if(req.user == null){
+            res.json({
+                message : "Please login as a administrator to create admin accounts"
+            })
+            return
+
+        }
+
+
+        if(req.user.type != "admin"){
+            res.json({
+                message : "Please login as a administrator to create admin accounts"
+            })
+            return
+
+        }
+    }
+
     newUserData.password = bcrypt.hashSync(newUserData.password,10)
 
         console.log(newUserData)
@@ -25,7 +45,7 @@ export function createUser(req,res){
 
  export function loginUser(req,res){
     User.find({email : req.body.email}).then((users)=>{
-        if(users.lenght == 0){
+        if(users.length == 0){
             message : "User not found"
         }else{
             const user = users[0]
@@ -62,3 +82,28 @@ export function createUser(req,res){
             })
         })
  }
+
+ export function isAdmin(req){
+    if(req.user == null){
+        return false
+    }
+    if(req.user.type != "admin"){
+        return false
+    }
+    return true
+ }
+
+ export function isCustomer(req){
+    if(req.user == null){
+        return false
+    }
+    if(req.user.type != "customer"){
+        return false
+    }
+    return true
+ }
+
+ //minuri@example.com
+ //MyStrongPassword123! admin
+
+ //minuri11@example.com - customer
