@@ -4,6 +4,8 @@ import userRouter from "./routes/userRouter.js";
 import { loginUser } from "./controller/userController.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import productRouter from "./routes/productRouter.js";
+
 dotenv.config()
 
 
@@ -57,7 +59,8 @@ mongoose.connect(connectionString).then(
 );
 
 app.use("/api/users",userRouter)
-app.use("/api/login",loginUser)
+app.post("/api/login",loginUser)
+app.use("/api/products",productRouter)
 
 //function success(){
     //console.log("Server is started")
