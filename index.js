@@ -5,6 +5,7 @@ import { loginUser } from "./controller/userController.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import productRouter from "./routes/productRouter.js";
+import orderRouter from "./routes/orderRouter.js";
 
 dotenv.config()
 
@@ -61,6 +62,7 @@ mongoose.connect(connectionString).then(
 app.use("/api/users",userRouter)
 app.post("/api/login",loginUser)
 app.use("/api/products",productRouter)
+app.use("/api/orders",orderRouter)
 
 //function success(){
     //console.log("Server is started")
