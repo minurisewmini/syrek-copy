@@ -48,7 +48,9 @@ export function createUser(req,res){
  export function loginUser(req,res){
     User.find({email : req.body.email}).then((users)=>{
         if(users.length == 0){
+            return res.json({
             message : "User not found"
+            })
         }else{
             const user = users[0]
 
@@ -66,10 +68,17 @@ export function createUser(req,res){
 
                 res.json({
                     message : "User logged in",
-                    token : token
+                    token : token,
+                    user:{
+                        firstName : user.firstName,
+                        lastName : user.lastName,
+                        type : user.type,
+                        profilePicture : user.profilePicture,
+                        email : user.email
+                    }
                 })   
         }else{
-                res.json({
+                return res.json({
                     message : "Password is Incorrect Can't login to the system"
                 })
         }

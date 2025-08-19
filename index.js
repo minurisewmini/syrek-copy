@@ -62,7 +62,7 @@ mongoose.connect(connectionString).then(
 );
 
 app.use("/api/users",userRouter)
-app.post("/api/login",loginUser)
+//app.post("/api/login",loginUser)
 app.use("/api/products",productRouter)
 app.use("/api/orders",orderRouter)
 
